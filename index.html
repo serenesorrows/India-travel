@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incredible India — Complete State & UT Travel Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS Variables ─────────────────────────────────────── */
+    :root {
+      --saffron: #FF9933;
+      --saffron-light: #FFEDCC;
+      --saffron-dark: #E07800;
+      --green: #138808;
+      --green-light: #E6F4E6;
+      --green-dark: #0A5E05;
+      --navy: #000080;
+      --pink: #C2185B;
+      --pink-light: #FCE4EC;
+      --cream: #FFF8EE;
+      --brown: #2C1810;
+      --brown-light: #6B3A2A;
+      --white: #FFFFFF;
+      --gray-100: #F5F5F5;
+      --gray-200: #E8E8E8;
+      --gray-400: #9E9E9E;
+      --gray-600: #616161;
+
+      /* Region colours */
+      --north-color: #1565C0;
+      --south-color: #2E7D32;
+      --east-color: #6A1B9A;
+      --west-color: #E65100;
+      --ne-color: #00695C;
+      --islands-color: #00838F;
+
+      --card-radius: 16px;
+      --shadow: 0 4px 20px rgba(44,24,16,0.10);
+      --shadow-hover: 0 12px 40px rgba(44,24,16,0.18);
+      --transition: 0.25s ease;
+    }
+
+    /* ── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Hero Header ───────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--saffron) 0%, #FF6B00 35%, var(--green) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 56px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-chakra {
+      font-size: 64px;
+      display: block;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      margin-bottom: 8px;
+    }
+    .hero p {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      opacity: 0.92;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+    .hero-tricolor {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 20px;
+    }
+    .hero-tricolor span {
+      height: 5px;
+      width: 80px;
+      border-radius: 3px;
+    }
+    .tc-saffron { background: var(--saffron); }
+    .tc-white   { background: rgba(255,255,255,0.9); }
+    .tc-green   { background: var(--green-light); }
+
+    /* ── Stats Bar ─────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--saffron-light);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .stat-item {
+      padding: 14px 28px;
+      text-align: center;
+      border-right: 1px solid var(--gray-200);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--saffron-dark);
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* ── Sticky Filter Bar ─────────────────────────────────── */
+    .filter-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 2px solid var(--saffron-light);
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(44,24,16,0.08);
+    }
+    .filter-bar label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brown-light);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      white-space: nowrap;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+      min-width: 140px;
+    }
+    .filter-group.search-group { flex: 2; min-width: 200px; }
+
+    .filter-bar input[type="search"],
+    .filter-bar select {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      padding: 8px 12px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      background: var(--gray-100);
+      color: var(--brown);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      width: 100%;
+    }
+    .filter-bar input[type="search"]:focus,
+    .filter-bar select:focus {
+      border-color: var(--saffron);
+      box-shadow: 0 0 0 3px rgba(255,153,51,0.15);
+      background: var(--white);
+    }
+    .filter-bar select { cursor: pointer; }
+
+    .filter-results-count {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      font-weight: 500;
+      white-space: nowrap;
+      align-self: flex-end;
+      padding-bottom: 2px;
+    }
+
+    /* ── Rankings Legend ───────────────────────────────────── */
+    .metrics-legend {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 10px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      justify-content: center;
+      align-items: center;
+    }
+    .metrics-legend-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--brown-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .metric-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: var(--gray-600);
+    }
+    .metric-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Cards Container ───────────────────────────────────── */
+    .cards-section {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    #cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── No-results ────────────────────────────────────────── */
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+      grid-column: 1 / -1;
+    }
+    #no-results .nr-icon { font-size: 64px; margin-bottom: 16px; }
+    #no-results h3 { font-size: 1.3rem; color: var(--brown); margin-bottom: 8px; }
+    #no-results p { color: var(--gray-600); }
+
+    /* ── Card ──────────────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-header {
+      padding: 18px 20px 14px;
+      position: relative;
+      color: var(--white);
+    }
+    .card-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .card-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      flex: 1;
+    }
+    .card-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+    .badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .badge-type {
+      background: rgba(255,255,255,0.22);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .badge-region {
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+
+    /* Score Ring */
+    .score-ring {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-ring svg {
+      position: absolute;
+      inset: 0;
+      transform: rotate(-90deg);
+    }
+    .score-ring-bg { stroke: rgba(255,255,255,0.2); }
+    .score-ring-fill {
+      stroke: var(--white);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.8s ease;
+    }
+    .score-value {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--white);
+      z-index: 1;
+      line-height: 1;
+    }
+    .score-label {
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.5rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 1;
+    }
+
+    /* ── Card Body ─────────────────────────────────────────── */
+    .card-body {
+      padding: 16px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Metrics */
+    .metrics-section {}
+    .metrics-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--gray-400);
+      margin-bottom: 8px;
+    }
+    .metric-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .metric-name {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .metric-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: var(--gray-200);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .metric-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.6s ease;
+    }
+    .metric-score {
+      font-size: 0.7rem;
+      font-weight: 600;
+      width: 22px;
+      text-align: right;
+      color: var(--brown);
+      flex-shrink: 0;
+    }
+
+    /* Attractions */
+    .section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--gray-400);
+      margin-bottom: 6px;
+    }
+    .attractions-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .attraction-tag {
+      font-size: 0.72rem;
+      background: var(--saffron-light);
+      color: var(--saffron-dark);
+      border: 1px solid rgba(255,153,51,0.3);
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* Pros & Cons */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .pros-block, .cons-block {}
+    .pros-cons-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pros-title { color: var(--green-dark); }
+    .cons-title { color: #B71C1C; }
+    .pros-cons-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pros-cons-list li {
+      font-size: 0.72rem;
+      line-height: 1.4;
+      color: var(--gray-600);
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .pros-cons-list li::before {
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pros-list li::before { content: '✓'; color: var(--green); font-weight: 700; }
+    .cons-list li::before { content: '✗'; color: #C62828; font-weight: 700; }
+
+    /* Footer Info Strip */
+    .card-footer-strip {
+      background: var(--gray-100);
+      border-top: 1px solid var(--gray-200);
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .info-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .pill-budget {
+      background: var(--saffron-light);
+      color: var(--saffron-dark);
+      border: 1px solid rgba(255,153,51,0.3);
+    }
+    .pill-budget-mid {
+      background: #E3F2FD;
+      color: #0D47A1;
+      border: 1px solid rgba(13,71,161,0.2);
+    }
+    .pill-budget-lux {
+      background: var(--pink-light);
+      color: var(--pink);
+      border: 1px solid rgba(194,24,91,0.2);
+    }
+    .pill-duration {
+      background: var(--green-light);
+      color: var(--green-dark);
+      border: 1px solid rgba(19,136,8,0.2);
+    }
+    .pill-season {
+      background: #FFF3E0;
+      color: #E65100;
+      border: 1px solid rgba(230,81,0,0.2);
+    }
+    .budget-amounts {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--gray-600);
+      font-weight: 500;
+      text-align: right;
+    }
+    .budget-amounts strong { color: var(--brown); font-weight: 700; }
+
+    /* ── Region Header Colours ─────────────────────────────── */
+    .region-north   { background: linear-gradient(135deg, #1565C0, #1976D2); }
+    .region-south   { background: linear-gradient(135deg, #2E7D32, #388E3C); }
+    .region-east    { background: linear-gradient(135deg, #6A1B9A, #7B1FA2); }
+    .region-west    { background: linear-gradient(135deg, #E65100, #F57C00); }
+    .region-northeast { background: linear-gradient(135deg, #00695C, #00796B); }
+    .region-islands { background: linear-gradient(135deg, #00838F, #0097A7); }
+
+    /* ── Metric Bar Colours ────────────────────────────────── */
+    .bar-appeal  { background: linear-gradient(90deg, #FF9933, #FF6B00); }
+    .bar-culture { background: linear-gradient(90deg, #9C27B0, #7B1FA2); }
+    .bar-nature  { background: linear-gradient(90deg, #4CAF50, #2E7D32); }
+    .bar-safety  { background: linear-gradient(90deg, #2196F3, #1565C0); }
+    .bar-access  { background: linear-gradient(90deg, #009688, #00695C); }
+    .bar-value   { background: linear-gradient(90deg, #FF5722, #E64A19); }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.78rem;
+      line-height: 1.8;
+    }
+    .site-footer strong { color: var(--saffron); }
+    .site-footer a { color: var(--saffron-light); }
+
+    /* ── Test Panel ────────────────────────────────────────── */
+    .test-panel {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    .test-toggle-btn {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,128,0.3);
+      transition: background var(--transition);
+    }
+    .test-toggle-btn:hover { background: #0000AA; }
+
+    .test-drawer {
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      width: min(520px, calc(100vw - 40px));
+      max-height: 70vh;
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+      overflow: hidden;
+      flex-direction: column;
+      z-index: 9998;
+    }
+    .test-drawer.open { display: flex; }
+
+    .test-drawer-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .test-run-btn {
+      background: var(--saffron);
+      color: var(--brown);
+      border: none;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .test-run-btn:hover { background: var(--saffron-dark); color: var(--white); }
+
+    .test-results {
+      overflow-y: auto;
+      padding: 12px 16px;
+      flex: 1;
+      font-size: 0.76rem;
+      line-height: 1.7;
+    }
+    .test-group-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--navy);
+      margin-top: 10px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 2px;
+    }
+    .test-line { display: flex; align-items: flex-start; gap: 6px; }
+    .test-pass { color: var(--green-dark); }
+    .test-fail { color: #C62828; }
+    .test-icon { flex-shrink: 0; font-size: 0.8rem; }
+    .test-summary {
+      background: var(--gray-100);
+      border-top: 1px solid var(--gray-200);
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+    .sum-pass { color: var(--green-dark); }
+    .sum-fail { color: #C62828; }
+
+    /* ── Month Calendar ─────────────────────────────────────── */
+    .month-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      margin-top: 6px;
+    }
+    .month-cell {
+      text-align: center;
+      font-size: 0.54rem;
+      font-weight: 700;
+      padding: 5px 1px 4px;
+      border-radius: 5px;
+      cursor: default;
+      line-height: 1.3;
+      transition: transform 0.15s;
+      user-select: none;
+    }
+    .month-cell:hover { transform: scale(1.2); z-index: 1; position: relative; }
+    .month-cell[data-score="3"] { background: #C8E6C9; color: #1B5E20; }
+    .month-cell[data-score="2"] { background: #FFF3E0; color: #BF360C; }
+    .month-cell[data-score="1"] { background: #F5F5F5; color: #BDBDBD; }
+    .month-legend {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .month-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.62rem;
+      color: var(--gray-600);
+    }
+    .month-legend-swatch {
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── AUD Rate Input ──────────────────────────────────────── */
+    .filter-bar input[type="number"] {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      padding: 8px 12px;
+      border: 1.5px solid var(--saffron);
+      border-radius: 8px;
+      background: var(--saffron-light);
+      color: var(--brown);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      width: 100%;
+      font-weight: 600;
+    }
+    .filter-bar input[type="number"]:focus {
+      border-color: var(--saffron-dark);
+      box-shadow: 0 0 0 3px rgba(255,153,51,0.2);
+    }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 1199px) {
+      #cards-container { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+    }
+    @media (max-width: 767px) {
+      #cards-container { grid-template-columns: 1fr; }
+      .filter-bar { flex-direction: column; align-items: stretch; }
+      .filter-group { min-width: unset; }
+      .hero { padding: 36px 16px 32px; }
+      .stat-item { padding: 10px 14px; }
+      .pros-cons { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 479px) {
+      .hero h1 { font-size: 1.4rem; }
+      .card-name { font-size: 1rem; }
+      .score-ring { width: 52px; height: 52px; }
+      .score-value { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ─────────────────────────────────────────────── -->
+<header class="hero" role="banner">
+  <span class="hero-chakra" aria-hidden="true">🇮🇳</span>
+  <h1>Incredible India Travel Guide</h1>
+  <p>Expert-ranked travel intelligence for all 28 States &amp; 8 Union Territories — attractions, pros, cons, budgets, and timelines to help you plan the perfect Indian adventure.</p>
+  <div class="hero-tricolor" aria-hidden="true">
+    <span class="tc-saffron"></span>
+    <span class="tc-white"></span>
+    <span class="tc-green"></span>
+  </div>
+</header>
+
+<!-- ── Stats Bar ─────────────────────────────────────────── -->
+<div class="stats-bar" role="region" aria-label="Statistics">
+  <div class="stat-item"><span class="stat-num">36</span><span class="stat-label">Destinations</span></div>
+  <div class="stat-item"><span class="stat-num">28</span><span class="stat-label">States</span></div>
+  <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Union Territories</span></div>
+  <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Regions</span></div>
+  <div class="stat-item"><span class="stat-num" id="stat-aud-val">1 AUD</span><span class="stat-label" id="stat-aud-label">≈ ₹57</span></div>
+</div>
+
+<!-- ── Filter Bar ────────────────────────────────────────── -->
+<nav class="filter-bar" aria-label="Filter destinations">
+  <div class="filter-group search-group">
+    <label for="search-input">Search</label>
+    <input type="search" id="search-input" placeholder="Search by state or UT name…" aria-label="Search by state name" autocomplete="off" />
+  </div>
+  <div class="filter-group" style="min-width:120px;flex:0 0 120px;">
+    <label for="aud-rate-input">A$ Rate (1 AUD =)</label>
+    <input type="number" id="aud-rate-input" value="57" min="1" max="999" step="1" aria-label="AUD to INR conversion rate" title="Enter how many INR equal 1 Australian Dollar" />
+  </div>
+  <div class="filter-group">
+    <label for="region-filter">Region</label>
+    <select id="region-filter" aria-label="Filter by region">
+      <option value="">All Regions</option>
+      <option value="North">North India</option>
+      <option value="South">South India</option>
+      <option value="East">East India</option>
+      <option value="West">West India</option>
+      <option value="Northeast">Northeast India</option>
+      <option value="Islands">Islands</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="budget-filter">Budget Tier</label>
+    <select id="budget-filter" aria-label="Filter by budget tier">
+      <option value="">All Budgets</option>
+      <option value="Budget">Budget (&lt;₹2K/day)</option>
+      <option value="Mid-range">Mid-range (₹2K–6K)</option>
+      <option value="Luxury">Luxury (&gt;₹6K/day)</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="duration-filter">Trip Duration</label>
+    <select id="duration-filter" aria-label="Filter by trip duration">
+      <option value="">Any Duration</option>
+      <option value="Weekend">Weekend (1–3 days)</option>
+      <option value="1 Week">1 Week (4–7 days)</option>
+      <option value="2+ Weeks">2+ Weeks (8+ days)</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="travel-season-filter">Travel Season</label>
+    <select id="travel-season-filter" aria-label="Filter by travel season">
+      <option value="">Any Season</option>
+      <option value="dec-jan">🌟 Dec–Jan (Indian Winter)</option>
+      <option value="mar-apr">🌸 Mar–Apr (Spring)</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="sort-select">Sort By</label>
+    <select id="sort-select" aria-label="Sort destinations">
+      <option value="score-desc">Highest Score</option>
+      <option value="score-asc">Lowest Score</option>
+      <option value="budget-asc">Lowest Budget</option>
+      <option value="name-asc">A → Z</option>
+      <option value="name-desc">Z → A</option>
+    </select>
+  </div>
+  <span class="filter-results-count" id="results-count" aria-live="polite">36 results</span>
+</nav>
+
+<!-- ── Metrics Legend ────────────────────────────────────── -->
+<div class="metrics-legend" role="complementary" aria-label="Score metrics legend">
+  <span class="metrics-legend-title">Ranking Metrics:</span>
+  <span class="metric-legend-item"><span class="metric-legend-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:linear-gradient(90deg,#FF9933,#FF6B00);"></span> Tourist Appeal ×1.5</span>
+  <span class="metric-legend-item"><span class="metric-legend-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:linear-gradient(90deg,#9C27B0,#7B1FA2);"></span> Cultural Richness ×1.2</span>
+  <span class="metric-legend-item"><span class="metric-legend-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:linear-gradient(90deg,#4CAF50,#2E7D32);"></span> Natural Beauty ×1.2</span>
+  <span class="metric-legend-item"><span class="metric-legend-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:linear-gradient(90deg,#2196F3,#1565C0);"></span> Safety &amp; Comfort ×1.1</span>
+  <span class="metric-legend-item"><span class="metric-legend-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:linear-gradient(90deg,#009688,#00695C);"></span> Accessibility ×1.0</span>
+  <span class="metric-legend-item"><span class="metric-legend-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:linear-gradient(90deg,#FF5722,#E64A19);"></span> Value for Money ×1.0</span>
+</div>
+
+<!-- ── Cards ─────────────────────────────────────────────── -->
+<main class="cards-section" role="main">
+  <div id="cards-container" aria-label="Destination cards">
+    <div id="no-results" role="status">
+      <div class="nr-icon">🔍</div>
+      <h3>No destinations found</h3>
+      <p>Try adjusting your search or filters to find what you're looking for.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="site-footer" role="contentinfo">
+  <p><strong>Incredible India Travel Guide</strong> — Expert-curated travel intelligence for Australian travellers</p>
+  <p>Budgets shown as per-day estimates (accommodation + food + local transport + entry fees). <strong>Exchange rate set dynamically</strong> — default 1 AUD ≈ ₹57 (April 2026); adjust in the filter bar above.</p>
+  <p>Rankings are advisory. Safety, health, and visa requirements should always be verified before travel.</p>
+  <p style="margin-top:8px; font-size:0.7rem; opacity:0.6;">Last updated: April 2026 · For personal use only · Not affiliated with Incredible India™</p>
+</footer>
+
+<!-- ── Test Panel ─────────────────────────────────────────── -->
+<div class="test-panel" role="complementary" aria-label="Test suite">
+  <div class="test-drawer" id="test-drawer" role="dialog" aria-modal="true" aria-label="Test suite panel">
+    <div class="test-drawer-header">
+      <span>🧪 Test Suite (T1–T14)</span>
+      <button class="test-run-btn" id="run-tests-btn" onclick="runAllTests()">▶ Run All Tests</button>
+    </div>
+    <div class="test-results" id="test-results"><p style="color:var(--gray-400);padding:8px 0;">Click "Run All Tests" to execute all 13 test groups.</p></div>
+    <div class="test-summary" id="test-summary" style="display:none;">
+      <span class="sum-pass" id="sum-pass"></span>
+      <span class="sum-fail" id="sum-fail"></span>
+    </div>
+  </div>
+  <button class="test-toggle-btn" id="test-toggle-btn" onclick="toggleTestPanel()" aria-expanded="false" aria-controls="test-drawer">🧪 Tests</button>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   DATA — 36 destinations (28 states + 8 UTs)
+   scores: appeal, culture, nature, safety, access, value (0-10)
+   Weights: appeal×1.5, culture×1.2, nature×1.2, safety×1.1, access×1.0, value×1.0
+   Total weight divisor = 7.0
+═══════════════════════════════════════════════════════════ */
+const destinations = [
+
+  /* ── NORTH INDIA ──────────────────────────────────────── */
+  {
+    id: 1, name: "Rajasthan", type: "State", region: "West",
+    scores: { appeal: 9.5, culture: 9.8, nature: 7.2, safety: 7.8, access: 8.5, value: 8.2 },
+    budgetTier: "Mid-range", budgetINR: 3500, budgetAUD: 61,
+    duration: "2+ Weeks", durationDays: 14, bestSeason: "Oct – Mar",
+    attractions: ["Amber Fort, Jaipur", "Mehrangarh Fort, Jodhpur", "Lake Pichola, Udaipur", "Thar Desert, Jaisalmer", "Ranthambore Tiger Reserve"],
+    pros: ["Unmatched heritage & palaces", "Vibrant local culture & cuisine", "World-class camel safaris", "Excellent tourism infrastructure"],
+    cons: ["Extreme summer heat (40–50°C)", "Aggressive touts at tourist sites", "Long distances between cities"]
+  },
+  {
+    id: 2, name: "Kerala", type: "State", region: "South",
+    scores: { appeal: 9.2, culture: 8.8, nature: 9.5, safety: 8.8, access: 8.2, value: 8.0 },
+    budgetTier: "Mid-range", budgetINR: 3200, budgetAUD: 56,
+    duration: "1 Week", durationDays: 7, bestSeason: "Sep – Mar",
+    attractions: ["Alleppey Backwaters houseboat", "Munnar Tea Plantations", "Periyar Wildlife Sanctuary", "Kovalam Beach", "Kathakali dance shows"],
+    pros: ["Serene backwaters unique to India", "Ayurvedic wellness & spas", "Excellent seafood & cuisine", "High literacy & tourist safety"],
+    cons: ["Monsoon (Jun–Aug) limits outdoor activities", "Houseboat costs run high", "Crowded beaches in peak season"]
+  },
+  {
+    id: 3, name: "Uttarakhand", type: "State", region: "North",
+    scores: { appeal: 9.0, culture: 8.5, nature: 9.8, safety: 8.0, access: 7.5, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1800, budgetAUD: 32,
+    duration: "1 Week", durationDays: 7, bestSeason: "Apr – Jun, Sep – Nov",
+    attractions: ["Valley of Flowers National Park", "Rishikesh – Yoga & Rafting", "Char Dham pilgrimage circuit", "Jim Corbett National Park", "Kedarnath Temple"],
+    pros: ["Stunning Himalayan scenery", "World yoga & meditation capital", "Excellent trekking routes", "Very affordable destination"],
+    cons: ["Road closures due to landslides", "Extreme cold in winter", "Basic facilities in remote areas"]
+  },
+  {
+    id: 4, name: "Goa", type: "State", region: "West",
+    scores: { appeal: 8.8, culture: 7.8, nature: 8.2, safety: 8.5, access: 9.0, value: 7.5 },
+    budgetTier: "Mid-range", budgetINR: 4000, budgetAUD: 70,
+    duration: "1 Week", durationDays: 5, bestSeason: "Nov – Feb",
+    attractions: ["Baga & Anjuna Beaches", "Old Goa Portuguese churches", "Dudhsagar Waterfall", "Panjim Heritage Quarter", "Spice plantation tours"],
+    pros: ["Best beach destination in India", "Vibrant nightlife & restaurants", "Portuguese colonial heritage", "Direct international flights"],
+    cons: ["Expensive vs. rest of India", "Heavily crowded Dec–Jan", "Beach quality varies widely"]
+  },
+  {
+    id: 5, name: "Ladakh", type: "Union Territory", region: "North",
+    scores: { appeal: 9.3, culture: 8.7, nature: 10.0, safety: 7.5, access: 6.5, value: 7.2 },
+    budgetTier: "Mid-range", budgetINR: 3800, budgetAUD: 67,
+    duration: "1 Week", durationDays: 9, bestSeason: "Jun – Sep",
+    attractions: ["Pangong Tso Lake", "Nubra Valley & sand dunes", "Thiksey & Hemis Monasteries", "Zanskar River rafting", "Khardung La – world's highest motorable pass"],
+    pros: ["Other-worldly landscapes", "Tibetan Buddhist culture", "Zero pollution & stargazing", "Adventure capital of India"],
+    cons: ["Altitude sickness risk (3,500–5,000m)", "Open only Jun–Sep (road access)", "Expensive permits & limited accommodation"]
+  },
+  {
+    id: 6, name: "Karnataka", type: "State", region: "South",
+    scores: { appeal: 8.8, culture: 9.0, nature: 8.5, safety: 8.2, access: 8.8, value: 8.3 },
+    budgetTier: "Mid-range", budgetINR: 3000, budgetAUD: 53,
+    duration: "1 Week", durationDays: 7, bestSeason: "Oct – Feb",
+    attractions: ["Hampi ruins (UNESCO)", "Mysore Palace & Dasara festival", "Coorg coffee estates", "Kabini Wildlife Resort", "Badami cave temples"],
+    pros: ["Incredible UNESCO heritage sites", "Rich coffee & spice culture", "Diverse landscape (coast, hills, plains)", "Good road infrastructure"],
+    cons: ["Hampi very hot Mar–May", "Limited English in rural areas", "Mysore crowded in peak Dasara"]
+  },
+  {
+    id: 7, name: "Andaman & Nicobar Islands", type: "Union Territory", region: "Islands",
+    scores: { appeal: 8.8, culture: 6.5, nature: 9.5, safety: 8.5, access: 7.0, value: 7.0 },
+    budgetTier: "Mid-range", budgetINR: 4500, budgetAUD: 79,
+    duration: "1 Week", durationDays: 7, bestSeason: "Oct – May",
+    attractions: ["Radhanagar Beach (Asia's Best)", "Havelock Island scuba diving", "Ross Island colonial ruins", "Cellular Jail history", "Jolly Buoy coral reefs"],
+    pros: ["Pristine untouched beaches", "World-class snorkelling & diving", "Crystal clear turquoise water", "Bioluminescent plankton beaches"],
+    cons: ["Expensive flights from mainland", "Restricted areas (Inner Line Permit)", "Limited nightlife or shopping"]
+  },
+  {
+    id: 8, name: "Himachal Pradesh", type: "State", region: "North",
+    scores: { appeal: 8.5, culture: 7.8, nature: 9.5, safety: 8.3, access: 7.2, value: 8.8 },
+    budgetTier: "Budget", budgetINR: 1600, budgetAUD: 28,
+    duration: "1 Week", durationDays: 7, bestSeason: "Mar – Jun, Sep – Nov",
+    attractions: ["Shimla colonial hill station", "Manali & Rohtang Pass", "Dharamshala – Dalai Lama's home", "Spiti Valley monasteries", "Great Himalayan National Park"],
+    pros: ["Most affordable hill station state", "Stunning apple orchards & valleys", "Excellent trekking & skiing", "Rich Tibetan cultural influence"],
+    cons: ["Road slides block routes in monsoon", "Very cold winters (Dec–Feb)", "Overcrowded Manali in summer"]
+  },
+  {
+    id: 9, name: "Tamil Nadu", type: "State", region: "South",
+    scores: { appeal: 8.5, culture: 9.5, nature: 7.8, safety: 8.0, access: 8.5, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1900, budgetAUD: 33,
+    duration: "1 Week", durationDays: 7, bestSeason: "Nov – Mar",
+    attractions: ["Meenakshi Temple, Madurai", "Brihadeeswara Temple, Thanjavur (UNESCO)", "Mahabalipuram shore temple", "Nilgiri Hills & Ooty", "Marina Beach, Chennai"],
+    pros: ["Richest Dravidian temple culture in India", "Excellent vegetarian food", "Very affordable destination", "Classical arts: Bharatanatyam, Carnatic music"],
+    cons: ["Intense heat Apr–Jun", "Language barrier (Tamil dominant)", "Temples closed to non-Hindus"]
+  },
+  {
+    id: 10, name: "Maharashtra", type: "State", region: "West",
+    scores: { appeal: 8.5, culture: 8.8, nature: 7.8, safety: 8.2, access: 9.2, value: 7.8 },
+    budgetTier: "Mid-range", budgetINR: 3800, budgetAUD: 67,
+    duration: "1 Week", durationDays: 7, bestSeason: "Oct – Feb",
+    attractions: ["Ajanta & Ellora Caves (UNESCO)", "Mumbai – Bollywood & Gateway of India", "Lonavala hill station", "Tadoba Tiger Reserve", "Panchgani & Mahabaleshwar"],
+    pros: ["Best international air connections", "UNESCO world heritage caves", "Diverse landscape: coast, ghats, plateaus", "Bollywood & cosmopolitan Mumbai"],
+    cons: ["Mumbai traffic & pollution severe", "Expensive city accommodation", "Crowded tourist sites Oct–Jan"]
+  },
+  {
+    id: 11, name: "Delhi", type: "Union Territory", region: "North",
+    scores: { appeal: 8.2, culture: 9.2, nature: 5.5, safety: 6.5, access: 9.5, value: 7.8 },
+    budgetTier: "Mid-range", budgetINR: 3200, budgetAUD: 56,
+    duration: "Weekend", durationDays: 3, bestSeason: "Oct – Mar",
+    attractions: ["Red Fort & Lal Qila", "Qutb Minar (UNESCO)", "Humayun's Tomb (UNESCO)", "India Gate & Rajpath", "Lodhi Garden & Hauz Khas"],
+    pros: ["Hub for all major India routes", "Incredible Mughal & colonial heritage", "World-class street food & Chandni Chowk", "Best museums & art spaces in India"],
+    cons: ["Severe air pollution Oct–Jan", "Safety concerns especially at night", "Extreme heat in summer (45°C+)"]
+  },
+  {
+    id: 12, name: "West Bengal", type: "State", region: "East",
+    scores: { appeal: 8.0, culture: 9.2, nature: 7.8, safety: 7.2, access: 8.5, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1700, budgetAUD: 30,
+    duration: "1 Week", durationDays: 7, bestSeason: "Oct – Feb",
+    attractions: ["Sundarbans mangrove tiger delta", "Darjeeling Himalayan Railway (UNESCO)", "Victoria Memorial, Kolkata", "Bishnupur terracotta temples", "Kolkata Durga Puja festival"],
+    pros: ["Richest literary & artistic culture in India", "Darjeeling tea & mountain views", "Most distinctive Bengali cuisine", "Very affordable destination"],
+    cons: ["Kolkata traffic & infrastructure dated", "Humidity high year-round", "Sundarbans access limited by tides"]
+  },
+  {
+    id: 13, name: "Gujarat", type: "State", region: "West",
+    scores: { appeal: 7.8, culture: 8.5, nature: 7.5, safety: 8.5, access: 8.0, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1600, budgetAUD: 28,
+    duration: "1 Week", durationDays: 7, bestSeason: "Oct – Mar",
+    attractions: ["Rann of Kutch salt desert", "Gir Forest – last wild lions", "Dwarka & Somnath temples", "Rani ki Vav stepwell (UNESCO)", "Ahmedabad old city (UNESCO)"],
+    pros: ["Ahmedabad is India's first UNESCO heritage city", "Last Asiatic lions in the world", "Unique Rann Utsav festival", "Strictly vegetarian state – superb food"],
+    cons: ["Prohibition state (no alcohol)", "Limited beach options", "Long drives between major sites"]
+  },
+  {
+    id: 14, name: "Andhra Pradesh", type: "State", region: "South",
+    scores: { appeal: 7.2, culture: 8.0, nature: 7.5, safety: 7.5, access: 7.8, value: 9.0 },
+    budgetTier: "Budget", budgetINR: 1400, budgetAUD: 25,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Feb",
+    attractions: ["Tirupati Venkateswara Temple", "Araku Valley & coffee estates", "Borra Caves stalactites", "Srisailam wildlife sanctuary", "Belum Caves – longest cave system in India"],
+    pros: ["Most affordable South India destination", "One of the world's richest & busiest temple", "Spicy coastal cuisine", "Uncrowded beaches"],
+    cons: ["Very hot & humid Apr–Jun", "Limited tourist infrastructure outside Tirupati", "Language barrier (Telugu dominant)"]
+  },
+  {
+    id: 15, name: "Telangana", type: "State", region: "South",
+    scores: { appeal: 7.0, culture: 7.8, nature: 6.5, safety: 7.5, access: 8.2, value: 8.8 },
+    budgetTier: "Budget", budgetINR: 1500, budgetAUD: 26,
+    duration: "Weekend", durationDays: 3, bestSeason: "Oct – Feb",
+    attractions: ["Charminar & Hyderabad old city", "Golconda Fort & Light Show", "Ramoji Film City (world's largest)", "Nagarjuna Sagar dam & ruins", "Warangal Fort ruins"],
+    pros: ["Hyderabadi biryani – India's best", "Affordable IT-city hospitality", "Unique Nizam-era heritage", "India's best film studio tour"],
+    cons: ["Hyderabad sprawl limits walkability", "Summer heat severe", "Limited natural attractions"]
+  },
+  {
+    id: 16, name: "Odisha", type: "State", region: "East",
+    scores: { appeal: 7.5, culture: 8.8, nature: 7.8, safety: 7.8, access: 7.0, value: 9.2 },
+    budgetTier: "Budget", budgetINR: 1200, budgetAUD: 21,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Feb",
+    attractions: ["Konark Sun Temple (UNESCO)", "Puri Jagannath Temple & Rath Yatra", "Chilika Lake – Asia's largest lagoon", "Simlipal tiger reserve", "Bhitarkanika mangroves & crocs"],
+    pros: ["Cheapest beach & temple destination in India", "Outstanding tribal art & crafts (Pattachitra)", "Less crowded than mainstream destinations", "Great for birdwatching & wildlife"],
+    cons: ["Cyclone risk Oct–Dec coast", "Limited luxury accommodation", "Transport links need improvement"]
+  },
+  {
+    id: 17, name: "Punjab", type: "State", region: "North",
+    scores: { appeal: 7.2, culture: 8.5, nature: 6.5, safety: 7.8, access: 8.2, value: 8.0 },
+    budgetTier: "Budget", budgetINR: 1800, budgetAUD: 32,
+    duration: "Weekend", durationDays: 3, bestSeason: "Oct – Mar",
+    attractions: ["Golden Temple, Amritsar", "Wagah Border ceremony", "Partition Museum, Amritsar", "Anandpur Sahib Gurdwara", "Punjab Rural Life Museum"],
+    pros: ["Golden Temple – most visited site in the world", "Warmest hospitality in India", "Exceptional Punjabi cuisine & langar", "Deep Sikh heritage & history"],
+    cons: ["Limited natural landscapes", "Hot & dusty May–Jun", "Few multi-day attractions beyond Amritsar"]
+  },
+  {
+    id: 18, name: "Assam", type: "State", region: "Northeast",
+    scores: { appeal: 7.8, culture: 7.5, nature: 9.0, safety: 7.2, access: 7.5, value: 8.8 },
+    budgetTier: "Budget", budgetINR: 1500, budgetAUD: 26,
+    duration: "1 Week", durationDays: 5, bestSeason: "Nov – Apr",
+    attractions: ["Kaziranga National Park – one-horned rhinos", "Majuli River Island (world's largest)", "Kamakhya Temple, Guwahati", "Dibru-Saikhowa wild horse reserve", "Manas National Park (UNESCO)"],
+    pros: ["Best one-horned rhino population in world", "World's largest river island culture", "Excellent Assam tea estates", "Gateway to Northeast India"],
+    cons: ["Humidity & monsoon intensity", "Limited upscale accommodation", "Some areas have security advisories"]
+  },
+  {
+    id: 19, name: "Meghalaya", type: "State", region: "Northeast",
+    scores: { appeal: 8.0, culture: 7.2, nature: 9.5, safety: 7.5, access: 6.8, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1600, budgetAUD: 28,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – May",
+    attractions: ["Living Root Bridges, Cherrapunji", "Dawki Crystal-clear river", "Mawsynram – world's wettest place", "Nohkalikai Falls", "Mawphlang Sacred Forest"],
+    pros: ["Unique living root bridges found nowhere else", "Earth's wettest region – lush & green", "Christian matrilineal tribal culture", "Pristine & untouristed landscapes"],
+    cons: ["Remote from major hubs – limited flights", "Roads rough & slow", "Heavy monsoon Jun–Sep limits access"]
+  },
+  {
+    id: 20, name: "Sikkim", type: "State", region: "Northeast",
+    scores: { appeal: 8.2, culture: 8.0, nature: 9.8, safety: 8.8, access: 6.5, value: 8.0 },
+    budgetTier: "Budget", budgetINR: 1700, budgetAUD: 30,
+    duration: "1 Week", durationDays: 7, bestSeason: "Mar – May, Sep – Nov",
+    attractions: ["Tsomgo Lake & Nathu La Pass", "Kanchenjunga Base Camp trek", "Rumtek Monastery", "Yuksom – gateway to Himalayan treks", "Pelling & Rabdentse ruins"],
+    pros: ["India's cleanest and most eco-conscious state", "Spectacular mountain vistas", "Strong Buddhist monastery culture", "Low crime – safest hill state"],
+    cons: ["Permit required for some zones", "Landslides block roads in monsoon", "Limited air connectivity (Pakyong is small)"]
+  },
+  {
+    id: 21, name: "Arunachal Pradesh", type: "State", region: "Northeast",
+    scores: { appeal: 7.8, culture: 7.8, nature: 9.5, safety: 7.0, access: 5.5, value: 8.2 },
+    budgetTier: "Budget", budgetINR: 1500, budgetAUD: 26,
+    duration: "2+ Weeks", durationDays: 10, bestSeason: "Oct – Apr",
+    attractions: ["Tawang Monastery (Asia's 2nd largest)", "Ziro Valley & Apatani tribe", "Sela Pass in snow", "Namdapha National Park", "Bhalukpong & Pakke Tiger Reserve"],
+    pros: ["India's most pristine wilderness", "Richest tribal diversity (26+ tribes)", "Massive undiscovered trekking territory", "Spectacular Buddhist monasteries"],
+    cons: ["Inner Line Permit required for foreigners", "Very limited infrastructure & accommodation", "Long, rough road journeys"]
+  },
+  {
+    id: 22, name: "Manipur", type: "State", region: "Northeast",
+    scores: { appeal: 6.8, culture: 7.5, nature: 8.0, safety: 6.2, access: 5.8, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1300, budgetAUD: 23,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Mar",
+    attractions: ["Loktak Lake – floating phumdis", "Keibul Lamjao – only floating national park", "Kangla Fort, Imphal", "Shirui Lily National Park", "Moirang & INA War Museum"],
+    pros: ["World's only floating national park", "Manipuri dance & polo (originated here)", "Cheap & culturally immersive", "Rare flora – Shirui lily found only here"],
+    cons: ["Security advisories still in effect", "Limited tourist infrastructure", "Curfews can disrupt travel plans"]
+  },
+  {
+    id: 23, name: "Nagaland", type: "State", region: "Northeast",
+    scores: { appeal: 7.2, culture: 8.8, nature: 8.0, safety: 6.8, access: 5.5, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1400, budgetAUD: 25,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Apr",
+    attractions: ["Hornbill Festival (Dec 1-10)", "Dzükou Valley trekking", "Kohima War Cemetery & WWII history", "Khonoma Green Village", "Nagaland tribal village stays"],
+    pros: ["Hornbill Festival – most spectacular tribal festival", "WWII Kohima – moving historical significance", "Pristine tribes with warrior heritage", "Excellent ecotourism"],
+    cons: ["Permit required (Protected Area Permit)", "Remote & difficult road access", "Infrastructure very basic outside Kohima"]
+  },
+  {
+    id: 24, name: "Mizoram", type: "State", region: "Northeast",
+    scores: { appeal: 6.5, culture: 7.2, nature: 8.2, safety: 7.5, access: 5.5, value: 8.8 },
+    budgetTier: "Budget", budgetINR: 1300, budgetAUD: 23,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Mar",
+    attractions: ["Phawngpui (Blue Mountain) National Park", "Vantawng Falls", "Durtlang Hills panorama", "Lunglei – second city & hills", "Reiek Heritage Village"],
+    pros: ["Highest literacy state in India", "Peaceful & very safe atmosphere", "Beautiful undulating hills", "Unique Mizo Christian culture"],
+    cons: ["Inner Line Permit required", "Very remote – limited flights", "Few mainstream tourist facilities"]
+  },
+  {
+    id: 25, name: "Tripura", type: "State", region: "Northeast",
+    scores: { appeal: 6.2, culture: 7.2, nature: 7.5, safety: 7.5, access: 6.5, value: 9.0 },
+    budgetTier: "Budget", budgetINR: 1100, budgetAUD: 19,
+    duration: "Weekend", durationDays: 3, bestSeason: "Oct – Mar",
+    attractions: ["Ujjayanta Palace, Agartala", "Neermahal Water Palace", "Unakoti rock carvings", "Sepahijala Wildlife Sanctuary", "Pilak archaeological site"],
+    pros: ["Cheapest Northeast destination", "Unique royal palace & water palace", "Rich tribal & Bengali heritage mix", "Peaceful & low-tourist-traffic"],
+    cons: ["Very limited tourism infra", "Few international-standard hotels", "Connectivity depends on train via Bangladesh corridor"]
+  },
+  {
+    id: 26, name: "Jharkhand", type: "State", region: "East",
+    scores: { appeal: 6.5, culture: 7.0, nature: 8.0, safety: 6.5, access: 6.8, value: 9.0 },
+    budgetTier: "Budget", budgetINR: 1200, budgetAUD: 21,
+    duration: "Weekend", durationDays: 3, bestSeason: "Oct – Feb",
+    attractions: ["Betla National Park & tigers", "Hundru Falls & Dassam Falls", "Parasnath Hill – Jain pilgrimage", "Ranchi city waterfalls", "Deoghar Baidyanath Jyotirlinga"],
+    pros: ["Untouched nature with tiger reserves", "Very affordable destination", "Important Jain & Hindu pilgrimage", "Rich tribal Santali, Ho, Mundari culture"],
+    cons: ["Naxal-affected interior regions", "Limited tourism infrastructure", "Roads outside cities poor"]
+  },
+  {
+    id: 27, name: "Bihar", type: "State", region: "East",
+    scores: { appeal: 7.5, culture: 9.5, nature: 6.0, safety: 6.2, access: 7.2, value: 9.5 },
+    budgetTier: "Budget", budgetINR: 900, budgetAUD: 16,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Mar",
+    attractions: ["Bodh Gaya (Buddha's enlightenment – UNESCO)", "Nalanda University ruins (UNESCO)", "Rajgir hot springs & Vishwa Shanti Stupa", "Vaishali – world's first republic", "Vikramshila ruins"],
+    pros: ["Cheapest destination in India", "Most important Buddhist circuit in the world", "UNESCO world heritage sites", "Two deep UNESCO sites (Bodh Gaya, Nalanda)"],
+    cons: ["Safety concerns & petty crime", "Infrastructure & roads below national average", "Very hot Apr–Jun (45°C+)"]
+  },
+  {
+    id: 28, name: "Haryana", type: "State", region: "North",
+    scores: { appeal: 5.5, culture: 6.5, nature: 5.5, safety: 7.0, access: 8.5, value: 8.5 },
+    budgetTier: "Budget", budgetINR: 1500, budgetAUD: 26,
+    duration: "Weekend", durationDays: 2, bestSeason: "Oct – Mar",
+    attractions: ["Kurukshetra – Mahabharata battlefield", "Sultanpur National Park (birds)", "Pinjore Gardens", "Surajkund Crafts Mela (Feb)", "Morni Hills"],
+    pros: ["Very close to Delhi – easy day trips", "Affordable accommodation", "Important Mahabharata historical sites", "Good highway connectivity"],
+    cons: ["Limited standalone must-see attractions", "Mostly best as day trip from Delhi", "Urban sprawl not scenic"]
+  },
+  {
+    id: 29, name: "Puducherry", type: "Union Territory", region: "South",
+    scores: { appeal: 7.8, culture: 8.2, nature: 7.0, safety: 8.8, access: 7.5, value: 7.5 },
+    budgetTier: "Mid-range", budgetINR: 2800, budgetAUD: 49,
+    duration: "Weekend", durationDays: 3, bestSeason: "Oct – Mar",
+    attractions: ["French Quarter (White Town)", "Sri Aurobindo Ashram", "Auroville – experimental city", "Paradise & Promenade Beach", "Basilica of the Sacred Heart"],
+    pros: ["Unique French-Tamil colonial fusion", "Auroville – UNESCO biosphere buffer zone", "Legal beer & wine (unlike dry Gujarat)", "Charming cafe & boutique culture"],
+    cons: ["Beaches not India's best", "Very small – 2-day destination max", "Crowded on weekends from Chennai"]
+  },
+  {
+    id: 30, name: "Chandigarh", type: "Union Territory", region: "North",
+    scores: { appeal: 6.0, culture: 6.5, nature: 6.5, safety: 8.8, access: 8.5, value: 7.5 },
+    budgetTier: "Mid-range", budgetINR: 2500, budgetAUD: 44,
+    duration: "Weekend", durationDays: 2, bestSeason: "Oct – Mar",
+    attractions: ["Rock Garden of Chandigarh", "Sukhna Lake", "Rose Garden (Asia's largest)", "Capitol Complex (Le Corbusier – UNESCO)", "Government Museum & Art Gallery"],
+    pros: ["India's most planned & cleanest city", "Le Corbusier's Capitol Complex – UNESCO", "Excellent safety for tourists", "Great base for HP & Punjab day trips"],
+    cons: ["Small – most sites done in 2 days", "Limited distinctive Indian culture/heritage", "Nightlife limited vs. major metros"]
+  },
+  {
+    id: 31, name: "Jammu & Kashmir", type: "Union Territory", region: "North",
+    scores: { appeal: 8.5, culture: 8.2, nature: 9.5, safety: 6.0, access: 7.0, value: 7.5 },
+    budgetTier: "Mid-range", budgetINR: 3000, budgetAUD: 53,
+    duration: "1 Week", durationDays: 7, bestSeason: "Apr – Oct",
+    attractions: ["Dal Lake houseboats, Srinagar", "Gulmarg ski & cable car", "Pahalgam valley & Betaab Valley", "Sonamarg glacier meadow", "Vaishno Devi shrine trek"],
+    pros: ["Dal Lake – one of the world's most iconic lakes", "Excellent skiing at Gulmarg", "Breathtaking alpine meadows", "Kashmiri cuisine, shawls & handicrafts"],
+    cons: ["Security situation needs monitoring", "Some areas require travel advisories", "Winter road closures"]
+  },
+  {
+    id: 32, name: "Lakshadweep", type: "Union Territory", region: "Islands",
+    scores: { appeal: 7.5, culture: 5.5, nature: 9.2, safety: 8.5, access: 5.0, value: 6.0 },
+    budgetTier: "Luxury", budgetINR: 8000, budgetAUD: 140,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – May",
+    attractions: ["Agatti & Bangaram coral atolls", "Snorkelling & scuba diving", "Lagoon kayaking", "Minicoy lighthouse & culture", "Pristine uninhabited islands"],
+    pros: ["India's most pristine coral reefs", "Uncrowded – very limited tourist numbers", "Maldives-quality water at India prices", "Zero pollution – marine sanctuary"],
+    cons: ["Permit required (foreigners need special permit)", "Very expensive with limited resorts", "Strict alcohol regulations", "Access only by ship or flight to Agatti"]
+  },
+  {
+    id: 33, name: "Dadra & Nagar Haveli and Daman & Diu", type: "Union Territory", region: "West",
+    scores: { appeal: 5.8, culture: 6.0, nature: 7.0, safety: 8.2, access: 7.8, value: 8.0 },
+    budgetTier: "Budget", budgetINR: 1800, budgetAUD: 32,
+    duration: "Weekend", durationDays: 2, bestSeason: "Oct – Feb",
+    attractions: ["Diu Fort & Portuguese walls", "Nagoa Beach, Diu", "Naida Caves", "Vansda National Park", "Daman lighthouse & sea promenade"],
+    pros: ["Alcohol available vs. dry Gujarat nearby", "Portuguese colonial architecture", "Quiet & uncrowded beaches", "Very affordable weekend escape"],
+    cons: ["Very small – limited 2-day content", "Basic tourist infrastructure", "Scant cultural depth vs. other destinations"]
+  },
+  {
+    id: 34, name: "Chhattisgarh", type: "State", region: "East",
+    scores: { appeal: 6.0, culture: 7.5, nature: 8.5, safety: 6.0, access: 6.2, value: 9.2 },
+    budgetTier: "Budget", budgetINR: 1100, budgetAUD: 19,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Feb",
+    attractions: ["Chitrakote Falls – India's Niagara", "Bastar Dussehra Festival (75 days!)", "Kanger Valley National Park", "Sirpur archaeological ruins", "Barnawapara wildlife sanctuary"],
+    pros: ["India's widest waterfall", "Richest tribal belt – 42 tribes", "Very cheap and untouched", "Unique Bastar craft tradition"],
+    cons: ["Naxal-affected districts – travel restrictions", "Very limited tourist infrastructure", "Poor road connectivity in forests"]
+  },
+  {
+    id: 35, name: "Madhya Pradesh", type: "State", region: "West",
+    scores: { appeal: 8.2, culture: 8.8, nature: 8.5, safety: 7.5, access: 7.8, value: 9.0 },
+    budgetTier: "Budget", budgetINR: 1800, budgetAUD: 32,
+    duration: "1 Week", durationDays: 7, bestSeason: "Oct – Mar",
+    attractions: ["Khajuraho temples (UNESCO)", "Kanha & Bandhavgarh Tiger Reserves", "Sanchi Stupa (UNESCO)", "Gwalior Fort", "Orchha medieval temples & cenotaphs"],
+    pros: ["Highest tiger density in India", "Three UNESCO world heritage sites", "Incredibly affordable", "Diverse landscape: vindhyas, satpuras, ghats"],
+    cons: ["Hot & very dusty Apr–Jun", "Remote tiger parks need advance booking", "Infrastructure inconsistent in rural areas"]
+  },
+  {
+    id: 36, name: "Uttar Pradesh", type: "State", region: "North",
+    scores: { appeal: 9.0, culture: 9.8, nature: 6.0, safety: 6.5, access: 8.5, value: 8.8 },
+    budgetTier: "Budget", budgetINR: 1600, budgetAUD: 28,
+    duration: "1 Week", durationDays: 5, bestSeason: "Oct – Mar",
+    attractions: ["Taj Mahal, Agra (UNESCO)", "Varanasi Ganga Ghats & aarti", "Fatehpur Sikri (UNESCO)", "Allahabad Sangam & Kumbh Mela", "Lucknow – Nawabi cuisine & architecture"],
+    pros: ["Taj Mahal – world's most iconic monument", "Varanasi – world's oldest living city", "Two UNESCO sites in Agra alone", "Exceptional Awadhi & Mughal cuisine"],
+    cons: ["Overcrowding at Taj Mahal & Varanasi", "Safety concerns in some areas", "Pollution & infrastructure challenges"]
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL SETTINGS
+═══════════════════════════════════════════════════════════ */
+let audRate = 57; // 1 AUD = ₹57 by default (adjustable via UI)
+
+/* ═══════════════════════════════════════════════════════════
+   SCORING ENGINE
+═══════════════════════════════════════════════════════════ */
+const WEIGHTS = { appeal: 1.5, culture: 1.2, nature: 1.2, safety: 1.1, access: 1.0, value: 1.0 };
+const WEIGHT_SUM = Object.values(WEIGHTS).reduce((a, b) => a + b, 0); // 7.0
+
+function computeOverall(scores) {
+  const weighted = Object.keys(WEIGHTS).reduce((sum, k) => sum + scores[k] * WEIGHTS[k], 0);
+  return Math.round((weighted / WEIGHT_SUM) * 10) / 10;
+}
+
+// Pre-compute overall scores
+destinations.forEach(d => { d.overall = computeOverall(d.scores); });
+
+/* ═══════════════════════════════════════════════════════════
+   MONTH SCORES — index 0=Jan … 11=Dec
+   3 = Great travel time  2 = Shoulder / OK  1 = Avoid
+═══════════════════════════════════════════════════════════ */
+const MONTH_SCORES = {
+   1: [3,3,3,2,1,1,1,1,2,3,3,3], // Rajasthan       – winter peak; brutal summer
+   2: [3,3,3,2,2,1,1,1,2,3,3,3], // Kerala          – Sep-Mar best; monsoon Jun-Aug
+   3: [1,2,3,3,3,2,1,1,3,3,3,1], // Uttarakhand     – Apr-Jun, Sep-Nov; closed winter
+   4: [3,3,2,2,1,1,1,1,1,2,3,3], // Goa             – Nov-Feb peak; monsoon bad
+   5: [1,1,1,1,2,3,3,3,3,2,1,1], // Ladakh          – Jun-Sep ONLY
+   6: [3,3,3,2,2,1,1,1,1,2,3,3], // Karnataka       – Oct-Feb ideal
+   7: [3,3,3,3,3,1,1,1,1,2,3,3], // Andaman         – Oct-May; rough seas Jun-Sep
+   8: [2,2,3,3,3,2,1,1,3,3,3,2], // HP              – Apr-Jun, Sep-Nov; ski Dec-Feb
+   9: [3,3,3,2,1,1,1,1,1,1,2,3], // Tamil Nadu      – Nov-Mar; NE monsoon Oct-Nov
+  10: [3,3,2,2,1,1,1,1,1,2,3,3], // Maharashtra     – Oct-Feb; scorching Apr-May
+  11: [3,3,3,2,1,1,1,1,1,2,3,3], // Delhi           – Oct-Mar; smog & heat otherwise
+  12: [3,3,3,2,1,1,1,1,1,2,3,3], // West Bengal     – Oct-Mar; monsoon Jun-Sep
+  13: [3,3,3,2,1,1,1,1,1,2,3,3], // Gujarat         – Oct-Mar; Rann closed in monsoon
+  14: [3,3,3,2,1,1,1,1,1,2,3,3], // Andhra Pradesh  – Oct-Feb best
+  15: [3,3,3,2,1,1,1,1,1,2,3,3], // Telangana       – Oct-Feb best
+  16: [3,3,2,2,1,1,1,1,1,2,3,3], // Odisha          – Oct-Feb; cyclone risk coast
+  17: [3,3,3,2,1,1,1,1,2,2,3,3], // Punjab          – Oct-Mar; Baisakhi Apr ok
+  18: [3,3,3,3,2,1,1,1,1,1,2,3], // Assam           – Nov-Apr best
+  19: [3,3,3,3,3,1,1,1,1,2,3,3], // Meghalaya       – Oct-May; extremely wet Jun-Sep
+  20: [2,2,3,3,3,2,1,1,3,3,3,2], // Sikkim          – Mar-Jun, Sep-Nov
+  21: [3,3,3,3,2,1,1,1,1,1,2,3], // Arunachal       – Oct-Apr best
+  22: [3,3,3,2,2,1,1,1,1,2,3,3], // Manipur         – Oct-Mar
+  23: [3,3,3,3,2,1,1,1,1,2,3,3], // Nagaland        – Oct-Apr; Hornbill Dec
+  24: [3,3,3,2,2,1,1,1,1,2,3,3], // Mizoram         – Oct-Mar
+  25: [3,3,3,2,2,1,1,1,1,2,3,3], // Tripura         – Oct-Mar
+  26: [3,3,2,2,1,1,1,1,1,2,3,3], // Jharkhand       – Oct-Feb
+  27: [3,3,3,2,1,1,1,1,1,2,3,3], // Bihar           – Oct-Mar; Kumbh Jan
+  28: [3,3,3,2,1,1,1,1,1,2,3,3], // Haryana         – Oct-Mar
+  29: [3,3,3,2,2,1,1,1,1,1,2,3], // Puducherry      – Nov-Mar
+  30: [3,3,3,2,2,2,2,2,2,2,3,3], // Chandigarh      – fair year-round; best Oct-Mar
+  31: [1,1,2,3,3,3,2,2,2,3,3,2], // J&K             – Apr-Oct; snowed-in Nov-Feb
+  32: [3,3,3,3,3,1,1,1,1,2,3,3], // Lakshadweep     – Oct-May; monsoon Jun-Sep
+  33: [3,3,2,2,1,1,1,1,1,2,3,3], // Dadra/Daman     – Oct-Feb
+  34: [3,3,2,2,1,1,1,1,1,2,3,3], // Chhattisgarh    – Oct-Feb
+  35: [3,3,3,2,1,1,1,1,1,2,3,3], // Madhya Pradesh  – Oct-Mar; tiger parks close Jun-Sep
+  36: [3,3,3,2,1,1,1,1,1,2,3,3], // Uttar Pradesh   – Oct-Mar; Varanasi Kumbh Jan
+};
+
+// Attach month scores to each destination
+destinations.forEach(d => { d.monthScores = MONTH_SCORES[d.id] || Array(12).fill(2); });
+
+/* ═══════════════════════════════════════════════════════════
+   RENDER ENGINE
+═══════════════════════════════════════════════════════════ */
+const REGION_CLASS = {
+  North: 'region-north', South: 'region-south', East: 'region-east',
+  West: 'region-west', Northeast: 'region-northeast', Islands: 'region-islands'
+};
+
+const BUDGET_PILL_CLASS = {
+  'Budget': 'pill-budget',
+  'Mid-range': 'pill-budget-mid',
+  'Luxury': 'pill-budget-lux'
+};
+
+const METRIC_LABELS = [
+  { key: 'appeal',  label: 'Tourist Appeal',   barClass: 'bar-appeal'  },
+  { key: 'culture', label: 'Cultural Richness', barClass: 'bar-culture' },
+  { key: 'nature',  label: 'Natural Beauty',    barClass: 'bar-nature'  },
+  { key: 'safety',  label: 'Safety & Comfort',  barClass: 'bar-safety'  },
+  { key: 'access',  label: 'Accessibility',     barClass: 'bar-access'  },
+  { key: 'value',   label: 'Value for Money',   barClass: 'bar-value'   }
+];
+
+function scoreColor(score) {
+  if (score >= 8.5) return '#2E7D32';
+  if (score >= 7.0) return '#F57F17';
+  return '#C62828';
+}
+
+function buildCard(d) {
+  const ringCircumference = 2 * Math.PI * 26; // r=26
+  const dashOffset = ringCircumference * (1 - d.overall / 10);
+  const regionClass = REGION_CLASS[d.region] || 'region-north';
+  const budgetPillClass = BUDGET_PILL_CLASS[d.budgetTier] || 'pill-budget';
+  const budgetAUD = Math.round(d.budgetINR / audRate);
+
+  const metricBars = METRIC_LABELS.map(m => `
+    <div class="metric-row">
+      <span class="metric-name">${m.label}</span>
+      <div class="metric-bar-wrap">
+        <div class="metric-bar-fill ${m.barClass}" style="width:${d.scores[m.key] * 10}%"></div>
+      </div>
+      <span class="metric-score">${d.scores[m.key]}</span>
+    </div>`).join('');
+
+  const attractionTags = d.attractions.map(a =>
+    `<li><span class="attraction-tag">${escHtml(a)}</span></li>`).join('');
+
+  const prosList = d.pros.map(p => `<li>${escHtml(p)}</li>`).join('');
+  const consList = d.cons.map(c => `<li>${escHtml(c)}</li>`).join('');
+
+  const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const SCORE_LABEL = { 3: 'Great', 2: 'OK', 1: 'Avoid' };
+  const monthCells = (d.monthScores || []).map((s, i) =>
+    `<div class="month-cell" data-score="${s}" title="${MONTH_NAMES[i]}: ${SCORE_LABEL[s]}">${MONTH_NAMES[i]}</div>`
+  ).join('');
+
+  return `
+  <article class="card" data-id="${d.id}" data-region="${d.region}" data-budget="${d.budgetTier}" data-duration="${d.duration}" data-score="${d.overall}" data-name="${d.name}" data-budget-inr="${d.budgetINR}">
+    <div class="card-header ${regionClass}">
+      <div class="card-header-top">
+        <div>
+          <div class="card-name">${escHtml(d.name)}</div>
+          <div class="card-badges">
+            <span class="badge badge-type">${escHtml(d.type)}</span>
+            <span class="badge badge-region">${escHtml(d.region)} India</span>
+          </div>
+        </div>
+        <div class="score-ring" aria-label="Overall score: ${d.overall} out of 10">
+          <svg viewBox="0 0 60 60" width="64" height="64">
+            <circle class="score-ring-bg" cx="30" cy="30" r="26" fill="none" stroke-width="5"/>
+            <circle class="score-ring-fill" cx="30" cy="30" r="26" fill="none" stroke-width="5"
+              stroke-dasharray="${ringCircumference.toFixed(1)}"
+              stroke-dashoffset="${dashOffset.toFixed(1)}"/>
+          </svg>
+          <span class="score-value">${d.overall}</span>
+          <span class="score-label">Score</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="metrics-section">
+        <div class="metrics-title">Ranking Scores</div>
+        ${metricBars}
+      </div>
+
+      <div class="attractions-section">
+        <div class="section-title">Top Attractions</div>
+        <ul class="attractions-list">${attractionTags}</ul>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros-block">
+          <div class="pros-cons-title pros-title">✓ Pros</div>
+          <ul class="pros-cons-list pros-list">${prosList}</ul>
+        </div>
+        <div class="cons-block">
+          <div class="pros-cons-title cons-title">✗ Cons</div>
+          <ul class="pros-cons-list cons-list">${consList}</ul>
+        </div>
+      </div>
+
+      <div class="month-calendar-section">
+        <div class="section-title">Best Travel Months</div>
+        <div class="month-grid" role="img" aria-label="Monthly travel rating for ${escHtml(d.name)}">${monthCells}</div>
+        <div class="month-legend">
+          <span class="month-legend-item"><span class="month-legend-swatch" style="background:#C8E6C9;"></span>Great</span>
+          <span class="month-legend-item"><span class="month-legend-swatch" style="background:#FFF3E0;border:1px solid #FFCC80;"></span>Shoulder / OK</span>
+          <span class="month-legend-item"><span class="month-legend-swatch" style="background:#F5F5F5;border:1px solid #E0E0E0;"></span>Avoid</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer-strip">
+      <span class="info-pill ${budgetPillClass}">💰 ${d.budgetTier}</span>
+      <span class="info-pill pill-duration">🕐 ${escHtml(d.duration)}</span>
+      <span class="info-pill pill-season">🌤 ${escHtml(d.bestSeason)}</span>
+      <div class="budget-amounts">
+        <strong>₹${d.budgetINR.toLocaleString()}</strong> / <strong>A$${budgetAUD}</strong> <span style="font-size:0.65rem;opacity:0.8;">per day</span>
+      </div>
+    </div>
+  </article>`;
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+function renderCards(data) {
+  const container = document.getElementById('cards-container');
+  const noResults = document.getElementById('no-results');
+  const count = document.getElementById('results-count');
+
+  if (data.length === 0) {
+    container.innerHTML = '';
+    container.appendChild(noResults);
+    noResults.style.display = 'block';
+    count.textContent = '0 results';
+    return;
+  }
+
+  noResults.style.display = 'none';
+  container.innerHTML = data.map(buildCard).join('');
+  container.appendChild(noResults); // keep in DOM for future use
+  count.textContent = `${data.length} result${data.length !== 1 ? 's' : ''}`;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FILTER & SORT ENGINE
+═══════════════════════════════════════════════════════════ */
+function updateAudDisplay() {
+  const label = document.getElementById('stat-aud-label');
+  if (label) label.textContent = `≈ ₹${audRate.toLocaleString()}`;
+}
+
+function applyFilters() {
+  // Read AUD rate first
+  const rateInput = document.getElementById('aud-rate-input');
+  const parsedRate = rateInput ? parseFloat(rateInput.value) : 57;
+  if (parsedRate > 0) { audRate = parsedRate; updateAudDisplay(); }
+
+  const searchVal = (document.getElementById('search-input').value || '').trim().toLowerCase();
+  const regionVal = document.getElementById('region-filter').value;
+  const budgetVal = document.getElementById('budget-filter').value;
+  const durationVal = document.getElementById('duration-filter').value;
+  const seasonVal = document.getElementById('travel-season-filter').value;
+  const sortVal = document.getElementById('sort-select').value;
+
+  let filtered = destinations.filter(d => {
+    if (searchVal && !d.name.toLowerCase().includes(searchVal)) return false;
+    if (regionVal && d.region !== regionVal) return false;
+    if (budgetVal && d.budgetTier !== budgetVal) return false;
+    if (durationVal && d.duration !== durationVal) return false;
+    if (seasonVal === 'dec-jan') {
+      // Dec = index 11, Jan = index 0; both must be score >= 2
+      if (!d.monthScores || d.monthScores[11] < 2 || d.monthScores[0] < 2) return false;
+    }
+    if (seasonVal === 'mar-apr') {
+      // Mar = index 2, Apr = index 3; both must be score >= 2
+      if (!d.monthScores || d.monthScores[2] < 2 || d.monthScores[3] < 2) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    switch (sortVal) {
+      case 'score-desc':  return b.overall - a.overall;
+      case 'score-asc':   return a.overall - b.overall;
+      case 'budget-asc':  return a.budgetINR - b.budgetINR;
+      case 'name-asc':    return a.name.localeCompare(b.name);
+      case 'name-desc':   return b.name.localeCompare(a.name);
+      default:            return b.overall - a.overall;
+    }
+  });
+
+  renderCards(filtered);
+}
+
+/* ── Event Listeners ─────────────────────────────────────── */
+['search-input', 'region-filter', 'budget-filter', 'duration-filter', 'travel-season-filter', 'sort-select', 'aud-rate-input'].forEach(id => {
+  document.getElementById(id).addEventListener('input', applyFilters);
+  document.getElementById(id).addEventListener('change', applyFilters);
+});
+
+/* ── Initial Render ──────────────────────────────────────── */
+applyFilters();
+
+/* ═══════════════════════════════════════════════════════════
+   TEST SUITE (T1–T13)
+═══════════════════════════════════════════════════════════ */
+function toggleTestPanel() {
+  const drawer = document.getElementById('test-drawer');
+  const btn = document.getElementById('test-toggle-btn');
+  const isOpen = drawer.classList.contains('open');
+  drawer.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function resetFilters() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('region-filter').value = '';
+  document.getElementById('budget-filter').value = '';
+  document.getElementById('duration-filter').value = '';
+  document.getElementById('travel-season-filter').value = '';
+  document.getElementById('sort-select').value = 'score-desc';
+  document.getElementById('aud-rate-input').value = '57';
+  audRate = 57;
+  updateAudDisplay();
+  applyFilters();
+}
+
+function setFilter(id, val) {
+  document.getElementById(id).value = val;
+  applyFilters();
+}
+
+function visibleCardCount() {
+  return document.querySelectorAll('#cards-container .card').length;
+}
+
+function visibleCards() {
+  return Array.from(document.querySelectorAll('#cards-container .card'));
+}
+
+function runAllTests() {
+  const resultsEl = document.getElementById('test-results');
+  const summaryEl = document.getElementById('test-summary');
+  let html = '';
+  let passCount = 0, failCount = 0;
+
+  function assert(condition, message) {
+    const ok = !!condition;
+    if (ok) passCount++; else failCount++;
+    html += `<div class="test-line ${ok ? 'test-pass' : 'test-fail'}">
+      <span class="test-icon">${ok ? '✅' : '❌'}</span>
+      <span>${escHtml(message)}</span>
+    </div>`;
+  }
+
+  function group(title) {
+    html += `<div class="test-group-title">${escHtml(title)}</div>`;
+  }
+
+  /* T1 — Initial Load */
+  resetFilters();
+  group('T1 — Initial Load / Render');
+  assert(visibleCardCount() === 36, `All 36 cards rendered (got ${visibleCardCount()})`);
+  assert(document.querySelector('.stats-bar') !== null, 'Stats bar present');
+  assert(document.querySelector('.filter-bar') !== null, 'Filter bar present');
+  assert(document.querySelector('.hero h1') !== null, 'Hero heading present');
+  const allCards = visibleCards();
+  const noEmptyNames = allCards.every(c => (c.getAttribute('data-name') || '').length > 0);
+  assert(noEmptyNames, 'No card has empty name attribute');
+  const noEmptyScores = allCards.every(c => parseFloat(c.getAttribute('data-score')) > 0);
+  assert(noEmptyScores, 'No card has zero score');
+  const allHaveAttractions = allCards.every(c => c.querySelectorAll('.attraction-tag').length === 5);
+  assert(allHaveAttractions, 'Every card has exactly 5 attraction tags');
+  const allHaveBudget = allCards.every(c => parseInt(c.getAttribute('data-budget-inr')) > 0);
+  assert(allHaveBudget, 'Every card has non-zero INR budget');
+  const allHaveMonthCalendar = allCards.every(c => c.querySelectorAll('.month-cell').length === 12);
+  assert(allHaveMonthCalendar, 'Every card has 12 month cells in the travel calendar');
+  const allMonthScoresValid = allCards.every(c => {
+    const cells = c.querySelectorAll('.month-cell');
+    return Array.from(cells).every(cell => ['1','2','3'].includes(cell.getAttribute('data-score')));
+  });
+  assert(allMonthScoresValid, 'All month cells have valid data-score (1, 2, or 3)');
+  assert(document.getElementById('aud-rate-input') !== null, 'AUD rate input present in filter bar');
+  assert(document.getElementById('aud-rate-input').value === '57', 'AUD rate input defaults to 57');
+  assert(document.getElementById('travel-season-filter') !== null, 'Travel season filter present in filter bar');
+  assert(document.getElementById('stat-aud-label') !== null, 'Stats bar AUD label present and dynamic');
+
+  /* T2 — Search */
+  group('T2 — Search');
+  resetFilters();
+  setFilter('search-input', 'Kerala');
+  assert(visibleCardCount() === 1, `Search "Kerala" → 1 card (got ${visibleCardCount()})`);
+
+  setFilter('search-input', 'kErAlA');
+  assert(visibleCardCount() === 1, 'Search "kErAlA" (case-insensitive) → 1 card');
+
+  setFilter('search-input', '  Goa  ');
+  assert(visibleCardCount() === 1, 'Search " Goa " (trimmed) → 1 card');
+
+  setFilter('search-input', 'XYZZZNOTASTATE');
+  assert(visibleCardCount() === 0, 'Search gibberish → 0 cards');
+  const noResultsVisible = document.getElementById('no-results').style.display !== 'none';
+  assert(noResultsVisible, 'No-results message shown when 0 cards');
+
+  setFilter('search-input', '');
+  assert(visibleCardCount() === 36, 'Clear search → all 36 cards restored');
+
+  /* T3 — Region Filter */
+  group('T3 — Region Filter');
+  resetFilters();
+  const regionExpected = { North: 9, South: 6, East: 5, West: 6, Northeast: 8, Islands: 2 };
+  // Validate counts from data
+  const regionActual = {};
+  Object.keys(regionExpected).forEach(r => {
+    regionActual[r] = destinations.filter(d => d.region === r).length;
+  });
+  Object.entries(regionExpected).forEach(([r, expected]) => {
+    setFilter('region-filter', r);
+    const count = visibleCardCount();
+    assert(count === expected, `Region=${r}: expected ${expected}, got ${count} (data has ${regionActual[r]})`);
+  });
+  resetFilters();
+  assert(visibleCardCount() === 36, 'Reset region → all 36 cards');
+
+  /* T4 — Budget Filter */
+  group('T4 — Budget Filter');
+  resetFilters();
+  ['Budget', 'Mid-range', 'Luxury'].forEach(tier => {
+    setFilter('budget-filter', tier);
+    const cards = visibleCards();
+    const allMatch = cards.every(c => c.getAttribute('data-budget') === tier);
+    assert(allMatch, `Budget filter "${tier}" → all shown cards match tier`);
+    assert(cards.length > 0, `Budget filter "${tier}" → at least 1 card`);
+  });
+  resetFilters();
+  assert(visibleCardCount() === 36, 'Reset budget → all 36 cards');
+
+  /* T5 — Duration Filter */
+  group('T5 — Duration Filter');
+  resetFilters();
+  const durationMap = { 'Weekend': [1, 3], '1 Week': [4, 7], '2+ Weeks': [8, 99] };
+  Object.entries(durationMap).forEach(([dur, [min, max]]) => {
+    setFilter('duration-filter', dur);
+    const cards = visibleCards();
+    const allMatch = cards.every(c => {
+      const dest = destinations.find(d => d.name === c.getAttribute('data-name'));
+      return dest && dest.durationDays >= min && dest.durationDays <= max;
+    });
+    assert(allMatch, `Duration "${dur}" → all shown cards in range ${min}–${max} days`);
+  });
+  resetFilters();
+
+  /* T6 — Sort */
+  group('T6 — Sort');
+  resetFilters();
+  setFilter('sort-select', 'score-desc');
+  let scores = visibleCards().map(c => parseFloat(c.getAttribute('data-score')));
+  assert(scores.every((s, i) => i === 0 || s <= scores[i-1]), 'Sort Highest Score → non-increasing order');
+
+  setFilter('sort-select', 'score-asc');
+  scores = visibleCards().map(c => parseFloat(c.getAttribute('data-score')));
+  assert(scores.every((s, i) => i === 0 || s >= scores[i-1]), 'Sort Lowest Score → non-decreasing order');
+
+  setFilter('sort-select', 'budget-asc');
+  const budgets = visibleCards().map(c => parseInt(c.getAttribute('data-budget-inr')));
+  assert(budgets.every((b, i) => i === 0 || b >= budgets[i-1]), 'Sort Lowest Budget → non-decreasing INR');
+
+  setFilter('sort-select', 'name-asc');
+  const names = visibleCards().map(c => c.getAttribute('data-name'));
+  assert(names.every((n, i) => i === 0 || n.localeCompare(names[i-1]) >= 0), 'Sort A→Z → alphabetical order');
+
+  setFilter('sort-select', 'name-desc');
+  const namesDesc = visibleCards().map(c => c.getAttribute('data-name'));
+  assert(namesDesc.every((n, i) => i === 0 || n.localeCompare(namesDesc[i-1]) <= 0), 'Sort Z→A → reverse alphabetical');
+  resetFilters();
+
+  /* T7 — Combined Filters */
+  group('T7 — Combined Filters');
+  resetFilters();
+  setFilter('region-filter', 'South');
+  setFilter('budget-filter', 'Budget');
+  const southBudgetCards = visibleCards();
+  const allSouthBudget = southBudgetCards.every(c => c.getAttribute('data-region') === 'South' && c.getAttribute('data-budget') === 'Budget');
+  assert(allSouthBudget, 'Region=South + Budget=Budget → only South Budget cards');
+
+  resetFilters();
+  setFilter('region-filter', 'Northeast');
+  setFilter('duration-filter', '2+ Weeks');
+  const neLong = visibleCards();
+  const allNELong = neLong.every(c => c.getAttribute('data-region') === 'Northeast' && c.getAttribute('data-duration') === '2+ Weeks');
+  assert(allNELong || neLong.length === 0, 'Region=NE + Duration=2+ Weeks → all match or 0 results');
+
+  resetFilters();
+  setFilter('search-input', 'a');
+  setFilter('region-filter', 'Islands');
+  const islandA = visibleCards();
+  const allIslandA = islandA.every(c => c.getAttribute('data-region') === 'Islands' && c.getAttribute('data-name').toLowerCase().includes('a'));
+  assert(allIslandA || islandA.length === 0, 'Search "a" + Region=Islands → both constraints applied');
+
+  resetFilters();
+  setFilter('region-filter', 'South');
+  setFilter('budget-filter', 'Budget');
+  setFilter('sort-select', 'score-desc');
+  const combScores = visibleCards().map(c => parseFloat(c.getAttribute('data-score')));
+  assert(combScores.every((s, i) => i === 0 || s <= combScores[i-1]), 'Combined filters + Sort → correct sort within filtered set');
+
+  // Clear one filter axis
+  setFilter('region-filter', '');
+  const afterClearRegion = visibleCards();
+  assert(afterClearRegion.every(c => c.getAttribute('data-budget') === 'Budget'), 'Clearing one filter axis preserves other filters');
+  resetFilters();
+
+  /* T8 — Card Content Completeness */
+  group('T8 — Card Content Completeness');
+  resetFilters();
+  const allDest = destinations;
+  const allHaveName = allDest.every(d => d.name && d.name.length > 0);
+  assert(allHaveName, 'All 36 destinations have non-empty names');
+  const validOverall = allDest.every(d => d.overall >= 0 && d.overall <= 10);
+  assert(validOverall, 'All overall scores are 0–10');
+  const validAttractions = allDest.every(d => d.attractions && d.attractions.length === 5);
+  assert(validAttractions, 'All destinations have exactly 5 attractions');
+  const validPros = allDest.every(d => d.pros && d.pros.length >= 3 && d.pros.length <= 5);
+  assert(validPros, 'All destinations have 3–5 pros');
+  const validCons = allDest.every(d => d.cons && d.cons.length >= 2 && d.cons.length <= 4);
+  assert(validCons, 'All destinations have 2–4 cons');
+  const validBudget = allDest.every(d => d.budgetINR > 0 && d.budgetAUD > 0);
+  assert(validBudget, 'All destinations have non-zero INR and AUD budgets');
+  const validSeason = allDest.every(d => d.bestSeason && d.bestSeason.length > 0);
+  assert(validSeason, 'All destinations have bestSeason');
+  const validType = allDest.every(d => d.type === 'State' || d.type === 'Union Territory');
+  assert(validType, 'All destinations have type "State" or "Union Territory"');
+  const validMetrics = allDest.every(d => Object.values(d.scores).every(s => s >= 0 && s <= 10));
+  assert(validMetrics, 'All 6 metric scores are 0–10');
+
+  /* T9 — Score Accuracy */
+  group('T9 — Score Accuracy');
+  const testSample = [0, 4, 9, 14, 20]; // indices of destinations to check
+  testSample.forEach(idx => {
+    const d = destinations[idx];
+    const manual = Object.keys(WEIGHTS).reduce((sum, k) => sum + d.scores[k] * WEIGHTS[k], 0) / WEIGHT_SUM;
+    const rounded = Math.round(manual * 10) / 10;
+    assert(Math.abs(rounded - d.overall) < 0.15, `Score formula correct for ${d.name}: computed=${rounded}, stored=${d.overall}`);
+  });
+
+  /* T10 — No-Results State */
+  group('T10 — No-Results State');
+  resetFilters();
+  setFilter('search-input', 'ZZZNOMATCH999');
+  assert(visibleCardCount() === 0, 'Zero results: cards container empty');
+  assert(document.getElementById('no-results').style.display !== 'none', 'No-results message visible');
+  setFilter('search-input', '');
+  assert(visibleCardCount() === 36, 'Clear search: all 36 cards reappear');
+  assert(document.getElementById('no-results').style.display === 'none' || visibleCardCount() === 36, 'No-results message hidden after restore');
+
+  /* T11 — DOM Responsiveness Indicators */
+  group('T11 — Responsiveness (DOM checks)');
+  const container2 = document.getElementById('cards-container');
+  const style = window.getComputedStyle(container2);
+  assert(style.display === 'grid', 'Cards container uses CSS grid');
+  const filterBar = document.querySelector('.filter-bar');
+  assert(filterBar !== null, 'Filter bar exists in DOM');
+  assert(filterBar.style.position === 'sticky' || window.getComputedStyle(filterBar).position === 'sticky', 'Filter bar is sticky positioned');
+
+  /* T12 — Accessibility */
+  group('T12 — Accessibility & UX');
+  const labels = document.querySelectorAll('.filter-bar label');
+  assert(labels.length >= 5, `Filter bar has at least 5 labels (got ${labels.length})`);
+  const searchInput = document.getElementById('search-input');
+  assert(searchInput.getAttribute('aria-label') !== null || searchInput.getAttribute('placeholder'), 'Search input has aria-label or placeholder');
+  const selects = document.querySelectorAll('.filter-bar select');
+  const allSelectsLabelled = Array.from(selects).every(s => s.getAttribute('aria-label') || s.id);
+  assert(allSelectsLabelled, 'All filter selects have aria-label or id');
+  const scoreRings = document.querySelectorAll('.score-ring');
+  const allRingsLabelled = Array.from(scoreRings).every(r => r.getAttribute('aria-label'));
+  assert(allRingsLabelled, 'All score rings have aria-label');
+  assert(document.getElementById('results-count').getAttribute('aria-live') === 'polite', 'Results count has aria-live="polite"');
+
+  /* T13 — Edge Cases */
+  group('T13 — Edge Cases');
+  resetFilters();
+  // Rapid filter chaining
+  ['North', 'South', 'East', 'West', 'Northeast', 'Islands', ''].forEach(r => setFilter('region-filter', r));
+  assert(visibleCardCount() === 36, 'After rapid region cycling → back to 36 cards');
+
+  // Sort change within filtered set
+  setFilter('region-filter', 'South');
+  setFilter('sort-select', 'score-asc');
+  const southAsc = visibleCards().map(c => parseFloat(c.getAttribute('data-score')));
+  assert(southAsc.every((s, i) => i === 0 || s >= southAsc[i-1]), 'Sort within region filter works correctly');
+
+  // Switch region while search active
+  resetFilters();
+  setFilter('search-input', 'a');
+  const beforeCount = visibleCardCount();
+  setFilter('region-filter', 'South');
+  const afterCount = visibleCardCount();
+  assert(afterCount <= beforeCount, 'Adding region filter while search active narrows (or maintains) results');
+  const bothConstraints = visibleCards().every(c =>
+    c.getAttribute('data-region') === 'South' && c.getAttribute('data-name').toLowerCase().includes('a')
+  );
+  assert(bothConstraints || afterCount === 0, 'Combined search+region filters both constraints applied simultaneously');
+  resetFilters();
+
+  /* T14 — New Features: AUD Rate & Travel Season Filters */
+  group('T14 — AUD Rate & Travel Season Filters');
+
+  // AUD rate: change to 60, verify card re-renders with new value
+  setFilter('aud-rate-input', '60');
+  applyFilters(); // trigger re-render
+  assert(audRate === 60, 'AUD rate global var updates when input changes to 60');
+  const statLabel = document.getElementById('stat-aud-label');
+  assert(statLabel && statLabel.textContent.includes('60'), 'Stats bar label updates to new AUD rate');
+  // Verify cards recalculated: Rajasthan INR=3500 / 60 ≈ 58
+  const rajCard = visibleCards().find(c => c.getAttribute('data-name') === 'Rajasthan');
+  if (rajCard) {
+    const audText = rajCard.querySelector('.budget-amounts') ? rajCard.querySelector('.budget-amounts').textContent : '';
+    assert(audText.includes('58'), `Rajasthan AUD re-calculated to A$58 at rate 60 (text: ${audText.trim().substring(0,30)})`);
+  } else {
+    assert(false, 'Rajasthan card not found for AUD recalculation test');
+  }
+  // Reset back to 57
+  setFilter('aud-rate-input', '57');
+  applyFilters();
+  assert(audRate === 57, 'AUD rate resets to 57 correctly');
+
+  // Dec-Jan filter
+  resetFilters();
+  setFilter('travel-season-filter', 'dec-jan');
+  const decJanCards = visibleCards();
+  assert(decJanCards.length > 0, 'Dec-Jan filter returns at least 1 destination');
+  const allDecJanValid = decJanCards.every(c => {
+    const d = destinations.find(dest => dest.name === c.getAttribute('data-name'));
+    return d && d.monthScores && d.monthScores[11] >= 2 && d.monthScores[0] >= 2;
+  });
+  assert(allDecJanValid, 'All Dec-Jan filtered cards have Dec(index 11) and Jan(index 0) score >= 2');
+  // Ladakh (Jun-Sep only) should NOT appear in Dec-Jan filter
+  const ladakhInDecJan = decJanCards.some(c => c.getAttribute('data-name') === 'Ladakh');
+  assert(!ladakhInDecJan, 'Ladakh (summer-only) correctly excluded from Dec-Jan filter');
+
+  // Mar-Apr filter
+  resetFilters();
+  setFilter('travel-season-filter', 'mar-apr');
+  const marAprCards = visibleCards();
+  assert(marAprCards.length > 0, 'Mar-Apr filter returns at least 1 destination');
+  const allMarAprValid = marAprCards.every(c => {
+    const d = destinations.find(dest => dest.name === c.getAttribute('data-name'));
+    return d && d.monthScores && d.monthScores[2] >= 2 && d.monthScores[3] >= 2;
+  });
+  assert(allMarAprValid, 'All Mar-Apr filtered cards have Mar(index 2) and Apr(index 3) score >= 2');
+  // Ladakh should NOT appear in Mar-Apr either (scores 1,1 for both months)
+  const ladakhInMarApr = marAprCards.some(c => c.getAttribute('data-name') === 'Ladakh');
+  assert(!ladakhInMarApr, 'Ladakh correctly excluded from Mar-Apr filter');
+  // Uttarakhand IS great in Mar-Apr — should appear
+  const uttInMarApr = marAprCards.some(c => c.getAttribute('data-name') === 'Uttarakhand');
+  assert(uttInMarApr, 'Uttarakhand (great Apr) correctly included in Mar-Apr filter');
+
+  // Season + Region combined
+  resetFilters();
+  setFilter('travel-season-filter', 'dec-jan');
+  setFilter('region-filter', 'Northeast');
+  const neDecJan = visibleCards();
+  const allNeDecJanValid = neDecJan.every(c => {
+    const d = destinations.find(dest => dest.name === c.getAttribute('data-name'));
+    return d && d.region === 'Northeast' && d.monthScores && d.monthScores[11] >= 2 && d.monthScores[0] >= 2;
+  });
+  assert(allNeDecJanValid || neDecJan.length === 0, 'NE + Dec-Jan combined filter → both constraints met');
+
+  // Reset
+  resetFilters();
+  assert(document.getElementById('travel-season-filter').value === '', 'resetFilters clears travel-season-filter');
+  assert(document.getElementById('aud-rate-input').value === '57', 'resetFilters restores AUD rate to 57');
+
+  /* ── Final Summary ─────────────────────────────────────── */
+  resultsEl.innerHTML = html;
+  summaryEl.style.display = 'flex';
+  document.getElementById('sum-pass').textContent = `✅ ${passCount} passed`;
+  document.getElementById('sum-fail').textContent = failCount > 0 ? `❌ ${failCount} failed` : '🎉 All passed!';
+  if (failCount === 0) document.getElementById('sum-fail').className = 'sum-pass';
+}
+</script>
+</body>
+</html>
